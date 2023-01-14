@@ -1,0 +1,339 @@
+html,body{
+    height: 100%;
+}
+
+body{
+    background-color: rgb(245, 232, 208);
+    font-family:'Courier New', Courier, monospace;
+    margin: 0 auto;
+    height: 100%;
+    
+}
+ /*CABEÇALHO*/
+ 
+.topo{
+    background-color: rgb(243, 200, 120);
+    height: 50px;
+}
+
+.links{
+    text-decoration:none;
+    color:black;
+    display: inline;
+    position: absolute;
+}
+
+.links_cima{
+    color:black;
+    text-decoration: none;
+}
+
+.nav_cabeçalho{
+    float: right;
+    margin-top: 20px;
+    margin-right: 30px;
+    font-size: 9pt;
+}
+
+@media screen and (max-width:650px){
+    .nav_cabeçalho,.nav_cabeçalho h2{
+        font-size: 9pt;
+        margin-right: 0;
+    }
+    .loja{
+        font-size: 25pt;
+        padding-top: 5px;
+    }
+}
+
+h1{
+    font-size: 30pt;
+    padding: 0;
+    margin: 0;
+}
+
+h2{
+    display: inline;
+    margin:0 auto;
+    margin-left:25px;
+    margin-top:25px;
+}
+
+/*CONTAINERS*/
+.produto{
+    position: relative;
+    font-size: 18pt;
+    margin-top: 30px;
+}
+
+.titulo_secundario{
+    margin-left: 80px;
+    width: 100%;
+}
+/*PRODUTOS A VENDA*/
+.itens{
+    max-width: 1400px;
+    position: flex;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+@media screen and (max-width:600px){
+    .itens{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width:1200px){
+    .itens{
+        left: 0;
+    }
+}
+
+@media screen and (max-width:630px){
+    .titulo_secundario{
+        font-size: 18pt;
+    }
+}
+
+.itens ul{
+    padding: 0;
+}
+
+li{
+    display: inline-block;
+    text-align: right;
+    width: 300px;
+    height: 340px;
+    position: relative;
+    text-align: center;
+    margin: 2px;
+    background-color:rgb(235, 212, 170);
+    border-radius: 15px 15px 15px 15px;
+}
+
+li p {
+    position: absolute;
+    margin: 0;
+    left: 2px;
+    font-size: 19pt;
+}
+
+.loja{
+    margin-left: 20px;
+}
+
+.obj{
+    margin: 5px;
+    margin-bottom: 15px;
+}
+
+.obj p{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
+    color: rgb(211, 89, 8);
+    font-size: 22pt;
+    padding-top: 5px;
+    padding-left: 15px;
+    bottom: 8px;
+}
+   
+li img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 285px;
+    height:270px;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+/*JANELA DO CARRINHO*/
+
+.botao_carrinho{
+    position: fixed;
+    cursor:pointer;
+    right: 5px;
+    top:155px;
+    border-radius: 15px;
+    width: 45px;
+    height: 45px;
+    z-index: 4;
+    background-color: rgb(250, 201, 109)
+}
+
+.botao_carrinho img{
+    height: 75%;
+    width: 75%;
+    padding: 0;
+    padding-right: 3px;
+}
+
+.Carrinho_janela{
+    display: none;
+    width: 250px;
+    max-width: 240px;
+    min-height: 350px;
+    border: 2px solid black;
+    position: fixed;
+    font-family: arial;
+    font-size: 11pt;
+    float:right;
+    background-color: rgb(250, 201, 109);
+    top:170px;
+    right: 25px;    
+    border-radius: 15px 0px 15px 20px;
+    text-align: center;
+}
+
+#carrinho{
+    margin:0 auto;
+    position: relative;
+    top:5px;
+    left:5px;
+}
+
+.Carrinho_janela ul{
+    position: relative;
+    display: block;
+    max-height: 50px;
+    max-width: 220px;
+    margin: 0 auto;
+    margin-top: 3px;
+    margin-bottom: 4px;
+    padding: 0;
+    text-align: left;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.Carrinho_janela img {
+    vertical-align: middle;
+    height: 46px;
+    width: 40px;
+    padding-left: 10px;
+}
+
+.Carrinho_janela p{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 12pt;
+    position: relative;
+}
+
+.Carrinho_janela .precoItem{
+    position: absolute;
+    right: 0;
+    margin: 0;
+    bottom: 0;
+    padding-right: 30px;
+}
+
+.Carrinho_janela .nomeItem{
+    position: absolute;
+    top: 0;
+    margin: 0;
+    margin-left: 12px;
+}
+
+.Carrinho_janela .qtdItem{
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    margin-left: 35px;
+}
+
+.add{
+    position: absolute;
+    border: 2px solid green;
+    border-radius: 5px;
+    height:30px;
+    width: 110px;
+    margin-top:5px;
+    bottom: 10px;
+    right: 30px;
+    background-color: lightgreen;
+}
+
+.add:hover{
+    background-color: limegreen;
+    cursor:pointer;
+}
+
+.remove{
+    position: absolute;
+    border: 2px solid rgb(243, 200, 120);
+    border: 1px solid rgb(133, 115, 82);
+    border-radius: 5px;
+    height:28px;
+    width: 20px;
+    bottom: 11px;
+    right: 5px;
+    background-color: rgb(230, 199, 142);
+}
+
+.remove:hover{
+    background-color: rgb(190, 149, 71);
+    border: 1px solid rgb(105, 81, 37);
+    cursor:pointer;
+}
+
+/*RODAPÉ*/
+nav h2{
+    position: relative;
+    bottom: 4px;
+    font-size: 13pt;
+    margin: 0;
+    padding-right: 25px;
+}
+
+header h2{
+    margin-top: 20px;
+}
+
+.chao{
+    background-color: rgb(250, 201, 109);
+    width: 100%;
+    height: 65px;
+    position: absolute;
+    bottom: 0;
+}
+
+.links_baixo{
+    text-decoration:none;
+    color:black;
+    display: inline-block;
+    margin: 7px;
+}
+
+.nav_rodape{
+    float: right;
+    margin-right: 300px;
+    padding-top: 15px;
+}
+
+.links_baixo h2{
+    font-size: 12pt;
+    padding: 0;
+    margin: 0;
+}
+
+#copy{
+    display: inline;
+    position: absolute;
+    width: 150px;
+    margin: 0;
+    padding-top: 30px;
+    padding-left: 150px;
+}
+
+@media screen and (max-width:900px){
+    #copy{
+        padding-left: 30px;
+        padding-top: 20px;
+    }
+    .nav_rodape,.links_baixo h2{
+        margin-right: 5px;
+        font-size:9pt
+    }
+}

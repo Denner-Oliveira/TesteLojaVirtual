@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOJA</title>
+    <link type="text/css" rel="stylesheet" href="../CSS/css.css"> 
+</head>
+<body>
+    <header class="topo">
+        <a class="links" href="index.html"><h1 class="loja">LOJA</h1></a>
+        <nav class="nav_cabeçalho">
+            <a class="links_cima" href="index.html"><h2>HOME</h2></a>
+            <a class="links_cima" href="contato.html"><h2>CONTATO</h2></a>
+            <a class="links_cima" href="trabalhe_conosco"><h2>TRABALHE CONOSCO</h2></a>
+        </nav>
+    </header>
+    <div class="produto">
+        <h2 class="titulo_secundario">Conheça nossos produtos</h2>
+    </div> 
+    <div class="itens">
+        <ul>
+            <li class="obj" id="it1">
+                <img src="../IMAGENS/CANECA1.jpg">
+                <p>R$ 25,00</p>
+                <input class="add" type="button" value="COMPRAR">
+                <input class="remove" type="button" value="-" >
+            </li> 
+            <li class="obj" id="it2">
+                <img src="../IMAGENS/CANECA2.jpg">
+                <p>R$ 30,00</p>
+                <input class="add" type="button" value="COMPRAR"> 
+                <input class="remove" type="button" value="-" >
+            </li>
+            <li class="obj" id="it3">
+                <img src="../IMAGENS/CANECA3.jpg">
+                <p>R$ 35,00</p>
+                <input class="add" type="button" value="COMPRAR"> 
+                <input class="remove" type="button" value="-">
+            </li>
+            <li class="obj" id="it4">
+                <img src="../IMAGENS/CANECA4.jpg">
+                <p>R$ 40,00</p>
+                <input class="add" type="button" value="COMPRAR"> 
+                <input class="remove" type="button" value="-" >
+            </li>
+            <li class="obj" id="it5">
+                <img src="../IMAGENS/CANECA5.jpg">
+                <p>R$ 45,00</p>
+                <input class="add" type="button" value="COMPRAR"> 
+                <input class="remove" type="button" value="-" >
+            </li> 
+            <li class="obj" id="it6">
+                <img src="../IMAGENS/CANECA6.jpg">
+                <p>R$ 50,00</p>
+                <input class="add" type="button" value="COMPRAR"> 
+                <input class="remove" type="button" value="-">
+            </li>
+            <li class="obj" id="it7">
+                <img src="../IMAGENS/CANECA7.jpg">
+                <p>R$ 55,00</p>
+                <input class="add" type="button" value="COMPRAR"> 
+                <input class="remove" type="button" value="-" >
+            </li>
+            <li class="obj" id="it8">
+                <img src="../IMAGENS/CANECA8.jpg">
+                <p>R$ 60,00</p>
+                <input class="add" type="button" value="COMPRAR">  
+                <input class="remove" type="button" value="-" >
+            </li>
+        </ul>
+    </div>
+        <button class="botao_carrinho" onclick="mudar()"><img src="../imagens/Ícone-Carrinho-de-Compras-PNG.png"></button>
+        <div class="Carrinho_janela" >
+            <p id="carrinho">CARRINHO</p>
+        </div>
+        <footer class="chao">
+            <p id="copy">&copy;Copyright</p>
+            <nav class="nav_rodape">
+                <a class="links_baixo" href="index.html"><h2>HOME</h2></a>
+                <a class="links_baixo" href="contato.html"><h2>CONTATO</h2></a>
+                <a class="links_baixo" href="trabalhe_conosco"><h2>TRABALHE CONOSCO</h2></a>
+            </nav>
+        </footer>
+<script src="../SCRIPT/carrinho.js"></script>
+</body>
+</html>
