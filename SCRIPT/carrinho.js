@@ -27,12 +27,8 @@ for(p=0;p<itens.length;p++){                                //LINKANDO ATRIBUTOS
 }
 
 function mudar(){                                           //MUDAR DISPLAY DO CARRINHO
-    let a = document.querySelector('.Carrinho_janela');
-    if(a.style.display == 'none' || a.style.display == ''){
-        a.style.display = "block"
-    }else{
-        a.style.display = 'none'
-    }
+    let a = document.querySelector('.carrinho_janela');
+    a.classList.toggle('hide')
 }
 
 function removerItem(element){                        //REMOÇÃO DE ITENS
@@ -73,7 +69,7 @@ function adicionarItem(element){                      //ADIÇÃO DE ITENS
 }
 
 function produtosNoCarrinho(element){                 //ADICIONAR PRODUTOS NA DIV CARRINHO
-    let elementoPai = document.querySelector('.Carrinho_janela')
+    let elementoPai = document.querySelector('.carrinho_janela')
     let itensNoCarrinho = document.createElement('ul')
     let texto = document.createElement('p')
     let textosrc = document.createTextNode(element.item)
@@ -91,7 +87,7 @@ function produtosNoCarrinho(element){                 //ADICIONAR PRODUTOS NA DI
     for(m=0;m<carrinhoDeCompras.length;m++){
         let qtd = carrinhoDeCompras[m].qtd
         let id = carrinhoDeCompras[m].id
-        let d = document.querySelectorAll('.Carrinho_janela ul')
+        let d = document.querySelectorAll('.carrinho_janela ul')
         let c = d[m]
         let e = carrinhoDeCompras[m]    
         if(qtd > 1 && id == element.id){
@@ -113,8 +109,8 @@ function produtosNoCarrinho(element){                 //ADICIONAR PRODUTOS NA DI
 }
 
 function rProdutosNoCarrinho(element){                  //REMOVER PRODUTOS NA DIV CARRINHO
-    let a = document.querySelectorAll('.Carrinho_janela ul');
-    let carro = document.querySelector('.Carrinho_janela')
+    let a = document.querySelectorAll('.carrinho_janela ul');
+    let carro = document.querySelector('.carrinho_janela')
     for(i=0;i<a.length;i++){
         valor = a[i];
         if(element.item == a[i].childNodes[1].textContent){
