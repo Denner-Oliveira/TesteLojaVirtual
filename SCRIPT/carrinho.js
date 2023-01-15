@@ -2,6 +2,8 @@ let carrinhoDeCompras = [];                                 //ARRAY DO CARRINHO
 let itens = document.querySelectorAll('.add');              //SELETOR DOS BOTÕES ADIÇÃO
 let itens2 = document.querySelectorAll('.remove');          //SELETOR DOS BOTÕES REMOÇÃO
 let tagCarrinho = document.querySelector('.carrinho_janela')
+let elementosNoCarrinho;
+let botao = document.querySelector('.botao_carrinho')
 
 let produtos = [{id:01,qtd:1,preco:25,item:'caneca1'},       //PRODUTOS
                 {id:02,qtd:1,preco:30,item:'caneca2'},
@@ -23,6 +25,8 @@ let imagens = ['../imagens/CANECA1.jpg',                     //IMAGENS DOS ITENS
                '../imagens/CANECA8.jpg',
 ]
 
+botao.addEventListener('click', mudar)
+
 for(p=0;p<itens.length;p++){                                //LINKANDO ATRIBUTOS PARA CHAMAR ADD ITEM
     let valor = JSON.stringify(produtos[p]);
     itens[p].setAttribute("onmousedown", "adicionarItem("+valor+")");
@@ -39,12 +43,12 @@ function removerItem(element){                        //REMOÇÃO DE ITENS
             let a = carrinhoDeCompras[i];
             if(element.id == a.id && a.qtd > 1){
                 carrinhoDeCompras[i].qtd = a.qtd - element.qtd;
-                rProdutosNoCarrinho(element);
+                removeProdutosNoCarrinho(element);
                 break
             }else if(element.id == a.id && a.qtd == 1){     //RETIRAR ARRAY CARRINHO
                 let a = carrinhoDeCompras.indexOf(carrinhoDeCompras[i]);
                 carrinhoDeCompras.splice(a, 1);
-                rProdutosNoCarrinho(element);
+                removeProdutosNoCarrinho(element);
                 break
             }
         }
@@ -53,73 +57,60 @@ function removerItem(element){                        //REMOÇÃO DE ITENS
 function adicionarItem(element){                      //ADIÇÃO DE ITENS
     if(carrinhoDeCompras.length == 0){
         carrinhoDeCompras.push(element);
-        produtosNoCarrinho(element);
+        adicionaProdutosNoCarrinho(element);
     }else{
         for(i = 0;i < carrinhoDeCompras.length;i++){
             let a = carrinhoDeCompras[i];
             if(element.id == a.id){
                 carrinhoDeCompras[i].qtd = element.qtd + carrinhoDeCompras[i].qtd;
-                produtosNoCarrinho(element);
+                adicionaProdutosNoCarrinho(element);
                 break
             }else if(i == carrinhoDeCompras.length-1 && carrinhoDeCompras[i].id != element.id){ 
                 carrinhoDeCompras.push(element);
-                produtosNoCarrinho(element);
+                adicionaProdutosNoCarrinho(element);
                 break
             }
         }
     }
 }
 
-function produtosNoCarrinho(element){                 //ADICIONAR PRODUTOS NA DIV CARRINHO
+function adicionaProdutosNoCarrinho(element){                 //ADICIONAR PRODUTOS NA DIV CARRINHO
     let elementoFilho = document.createElement('ul');
-    let nomeItem = document.createElement('p');
+    let quantidade = document.createTextNode(element.qtd); 
+    let valor = document.createTextNode(`R$ ${element.preco},00`); 
     let itemNome = document.createTextNode(element.item);
-    let itemImg = document.createElement('img');
-    let itemPreco = document.createElement('p');
-    let valor = document.createTextNode(`R$ ${element.preco},00`);
-    let itemQtd = document.createElement('p');
-    let quantidade = document.createTextNode(element.qtd);
-    nomeItem.setAttribute('class','nomeItem');
-    nomeItem.appendChild(itemNome);
-    itemPreco.setAttribute('class','precoItem');
-    itemPreco.appendChild(valor);
-    itemQtd.append(quantidade);
-    itemQtd.setAttribute('class','qtdItem');
+    let nomeItem = document.createElement('p'); nomeItem.setAttribute('class','nomeItem'); nomeItem.appendChild(itemNome);
+    let itemPreco = document.createElement('p');itemPreco.setAttribute('class','precoItem'); itemPreco.appendChild(valor); 
+    let itemQtd = document.createElement('p'); itemQtd.setAttribute('class','qtdItem'); itemQtd.append(quantidade); 
+    let itemImg = document.createElement('img');itemImg.setAttribute('src', imagens[element.id - 1])
     for(m = 0; m<carrinhoDeCompras.length;m++){
-        let qtdCarrinho = carrinhoDeCompras[m].qtd;
-        let ItemId = carrinhoDeCompras[m].id;
-        let elementosNoCarrinho = document.querySelectorAll('.carrinho_janela ul');
-        let elemento = elementosNoCarrinho[m];
-        let item = carrinhoDeCompras[m];
-        if(qtdCarrinho > 1 && ItemId == element.id){
-            let it = elemento.querySelector('.qtdItem');
-            it.innerHTML = item.qtd;
+        elementosNoCarrinho = document.querySelectorAll('.carrinho_janela ul');
+        if(carrinhoDeCompras[m].qtd > 1 && carrinhoDeCompras[m].id == element.id){
+            let it = elementosNoCarrinho[m].querySelector('.qtdItem');
+            it.innerHTML = carrinhoDeCompras[m].qtd;
             break
-        }else if(m == carrinhoDeCompras.length -1 && qtdCarrinho>=1){
-            for(i = 0; i < carrinhoDeCompras.length;i++){
-                itemImg.setAttribute('src', imagens[element.id - 1])
-                elementoFilho.appendChild(itemImg);
-                elementoFilho.appendChild(nomeItem);
-                elementoFilho.appendChild(itemPreco);
-                elementoFilho.appendChild(itemQtd);
-                tagCarrinho.appendChild(elementoFilho);
-                break
-            }
+        }else if(m == carrinhoDeCompras.length -1 && carrinhoDeCompras[m].qtd>=1){
+            elementoFilho.appendChild(itemImg);
+            elementoFilho.appendChild(nomeItem);
+            elementoFilho.appendChild(itemPreco);
+            elementoFilho.appendChild(itemQtd);
+            tagCarrinho.appendChild(elementoFilho);
+            break
         }
     }
 }
 
-function rProdutosNoCarrinho(element){                  //REMOVER PRODUTOS NA DIV CARRINHO
-    let elemento = document.querySelectorAll('.carrinho_janela ul');
-    for(i=0;i<elemento.length;i++){
-        valor = elemento[i];
-        if(element.item == elemento[i].childNodes[1].textContent){
-            if(elemento[i].childNodes[3].textContent > 1){
-                let b = elemento[i].childNodes[3].textContent;
+function removeProdutosNoCarrinho(element){                  //REMOVER PRODUTOS NA DIV CARRINHO
+    elementosNoCarrinho = document.querySelectorAll('.carrinho_janela ul');
+    for(i=0;i<elementosNoCarrinho.length;i++){
+        valor = elementosNoCarrinho[i];
+        if(element.item == elementosNoCarrinho[i].childNodes[1].textContent){
+            if(elementosNoCarrinho[i].childNodes[3].textContent > 1){
+                let b = elementosNoCarrinho[i].childNodes[3].textContent;
                 let valor = parseInt(b,10);
-                elemento[i].childNodes[3].innerHTML = valor - 1;
+                elementosNoCarrinho[i].childNodes[3].innerHTML = valor - 1;
             }else{
-                tagCarrinho.removeChild(elemento[i]);
+                tagCarrinho.removeChild(elementosNoCarrinho[i]);
             }
         }
     }

@@ -184,7 +184,7 @@ li img {
     position: relative;
 }
 
-.carrinho_janela .precoItem{
+.carrinho_janela ul .precoItem{
     position: absolute;
     right: 0;
     margin: 0;
@@ -271,10 +271,11 @@ li img {
 
 #copy{
     display: flex;
-    margin: 15px 0 0 65px;
+    margin: 8px 0 0 65px;
 }
 
 @media screen and (max-width:430px){
+    
     .itens{
         flex-direction: column;
     }
@@ -302,13 +303,11 @@ li img {
 
     .links_baixo h2{
         font-size: 10pt;
-        
     }
 
     #copy{
         font-size: 8pt;
         margin-left: 40px;
-        margin-top: 8px;
     }
 
     .loja{
