@@ -1,6 +1,8 @@
 let carrinhoDeCompras = [];                                 //ARRAY DO CARRINHO
 let itens = document.querySelectorAll('.add');              //SELETOR DOS BOTÕES ADIÇÃO
 let itens2 = document.querySelectorAll('.remove');          //SELETOR DOS BOTÕES REMOÇÃO
+let tagCarrinho = document.querySelector('.carrinho_janela')
+
 let produtos = [{id:01,qtd:1,preco:25,item:'caneca1'},       //PRODUTOS
                 {id:02,qtd:1,preco:30,item:'caneca2'},
                 {id:03,qtd:1,preco:35,item:'caneca3'},
@@ -10,6 +12,7 @@ let produtos = [{id:01,qtd:1,preco:25,item:'caneca1'},       //PRODUTOS
                 {id:07,qtd:1,preco:55,item:'caneca7'},
                 {id:08,qtd:1,preco:60,item:'caneca8'}
 ]
+
 let imagens = ['../imagens/CANECA1.jpg',                     //IMAGENS DOS ITENS NO CARRINHO
                '../imagens/CANECA2.jpg',
                '../imagens/CANECA3.jpg',
@@ -21,28 +24,27 @@ let imagens = ['../imagens/CANECA1.jpg',                     //IMAGENS DOS ITENS
 ]
 
 for(p=0;p<itens.length;p++){                                //LINKANDO ATRIBUTOS PARA CHAMAR ADD ITEM
-    let valor = JSON.stringify(produtos[p])
-    itens[p].setAttribute("onmousedown", "adicionarItem("+valor+")")
-    itens2[p].setAttribute("onmousedown", "removerItem("+valor+")")
+    let valor = JSON.stringify(produtos[p]);
+    itens[p].setAttribute("onmousedown", "adicionarItem("+valor+")");
+    itens2[p].setAttribute("onmousedown", "removerItem("+valor+")");
 }
 
 function mudar(){                                           //MUDAR DISPLAY DO CARRINHO
-    let a = document.querySelector('.carrinho_janela');
-    a.classList.toggle('hide')
+    tagCarrinho.classList.toggle('hide');
 }
 
 function removerItem(element){                        //REMOÇÃO DE ITENS
     if(carrinhoDeCompras.length > 0){   
         for(i = 0;i < carrinhoDeCompras.length;i++){
-            let a = carrinhoDeCompras[i]
+            let a = carrinhoDeCompras[i];
             if(element.id == a.id && a.qtd > 1){
-                carrinhoDeCompras[i].qtd = a.qtd - element.qtd
-                rProdutosNoCarrinho(element)
+                carrinhoDeCompras[i].qtd = a.qtd - element.qtd;
+                rProdutosNoCarrinho(element);
                 break
             }else if(element.id == a.id && a.qtd == 1){     //RETIRAR ARRAY CARRINHO
                 let a = carrinhoDeCompras.indexOf(carrinhoDeCompras[i]);
                 carrinhoDeCompras.splice(a, 1);
-                rProdutosNoCarrinho(element)
+                rProdutosNoCarrinho(element);
                 break
             }
         }
@@ -50,18 +52,18 @@ function removerItem(element){                        //REMOÇÃO DE ITENS
 }
 function adicionarItem(element){                      //ADIÇÃO DE ITENS
     if(carrinhoDeCompras.length == 0){
-        carrinhoDeCompras.push(element)
-        produtosNoCarrinho(element)
+        carrinhoDeCompras.push(element);
+        produtosNoCarrinho(element);
     }else{
         for(i = 0;i < carrinhoDeCompras.length;i++){
-            let a = carrinhoDeCompras[i]
+            let a = carrinhoDeCompras[i];
             if(element.id == a.id){
-                carrinhoDeCompras[i].qtd = element.qtd + carrinhoDeCompras[i].qtd
-                produtosNoCarrinho(element)
+                carrinhoDeCompras[i].qtd = element.qtd + carrinhoDeCompras[i].qtd;
+                produtosNoCarrinho(element);
                 break
             }else if(i == carrinhoDeCompras.length-1 && carrinhoDeCompras[i].id != element.id){ 
-                carrinhoDeCompras.push(element)
-                produtosNoCarrinho(element)
+                carrinhoDeCompras.push(element);
+                produtosNoCarrinho(element);
                 break
             }
         }
@@ -69,39 +71,38 @@ function adicionarItem(element){                      //ADIÇÃO DE ITENS
 }
 
 function produtosNoCarrinho(element){                 //ADICIONAR PRODUTOS NA DIV CARRINHO
-    let elementoPai = document.querySelector('.carrinho_janela')
-    let itensNoCarrinho = document.createElement('ul')
-    let texto = document.createElement('p')
-    let textosrc = document.createTextNode(element.item)
-    texto.setAttribute('class','nomeItem')
-    texto.appendChild(textosrc)
-    let img = document.createElement('img')
-    let preco = document.createElement('p')
-    let precoItem = document.createTextNode(`R$ ${element.preco},00`)
-    preco.setAttribute('class','precoItem')
-    preco.appendChild(precoItem)
-    let qtdd = document.createElement('p')
-    let qtddItem = document.createTextNode(element.qtd)
-    qtdd.append(qtddItem)
-    qtdd.setAttribute('class','qtdItem')
-    for(m=0;m<carrinhoDeCompras.length;m++){
-        let qtd = carrinhoDeCompras[m].qtd
-        let id = carrinhoDeCompras[m].id
-        let d = document.querySelectorAll('.carrinho_janela ul')
-        let c = d[m]
-        let e = carrinhoDeCompras[m]    
-        if(qtd > 1 && id == element.id){
-            let t = c.querySelector('.qtdItem')
-            t.innerHTML = e.qtd 
+    let elementoFilho = document.createElement('ul');
+    let nomeItem = document.createElement('p');
+    let itemNome = document.createTextNode(element.item);
+    let itemImg = document.createElement('img');
+    let itemPreco = document.createElement('p');
+    let valor = document.createTextNode(`R$ ${element.preco},00`);
+    let itemQtd = document.createElement('p');
+    let quantidade = document.createTextNode(element.qtd);
+    nomeItem.setAttribute('class','nomeItem');
+    nomeItem.appendChild(itemNome);
+    itemPreco.setAttribute('class','precoItem');
+    itemPreco.appendChild(valor);
+    itemQtd.append(quantidade);
+    itemQtd.setAttribute('class','qtdItem');
+    for(m = 0; m<carrinhoDeCompras.length;m++){
+        let qtdCarrinho = carrinhoDeCompras[m].qtd;
+        let ItemId = carrinhoDeCompras[m].id;
+        let elementosNoCarrinho = document.querySelectorAll('.carrinho_janela ul');
+        let elemento = elementosNoCarrinho[m];
+        let item = carrinhoDeCompras[m];
+        if(qtdCarrinho > 1 && ItemId == element.id){
+            let it = elemento.querySelector('.qtdItem');
+            it.innerHTML = item.qtd;
             break
-        }else if(m == carrinhoDeCompras.length -1 && qtd>=1){
+        }else if(m == carrinhoDeCompras.length -1 && qtdCarrinho>=1){
             for(i = 0; i < carrinhoDeCompras.length;i++){
-                img.setAttribute('src', imagens[element.id - 1])
-                itensNoCarrinho.appendChild(img)
-                itensNoCarrinho.appendChild(texto)
-                itensNoCarrinho.appendChild(preco)
-                itensNoCarrinho.appendChild(qtdd)
-                elementoPai.appendChild(itensNoCarrinho)
+                itemImg.setAttribute('src', imagens[element.id - 1])
+                elementoFilho.appendChild(itemImg);
+                elementoFilho.appendChild(nomeItem);
+                elementoFilho.appendChild(itemPreco);
+                elementoFilho.appendChild(itemQtd);
+                tagCarrinho.appendChild(elementoFilho);
                 break
             }
         }
@@ -109,17 +110,16 @@ function produtosNoCarrinho(element){                 //ADICIONAR PRODUTOS NA DI
 }
 
 function rProdutosNoCarrinho(element){                  //REMOVER PRODUTOS NA DIV CARRINHO
-    let a = document.querySelectorAll('.carrinho_janela ul');
-    let carro = document.querySelector('.carrinho_janela')
-    for(i=0;i<a.length;i++){
-        valor = a[i];
-        if(element.item == a[i].childNodes[1].textContent){
-            if(a[i].childNodes[3].textContent > 1){
-                let b = a[i].childNodes[3].textContent
-                let valor = parseInt(b,10)    
-                a[i].childNodes[3].innerHTML = valor - 1
+    let elemento = document.querySelectorAll('.carrinho_janela ul');
+    for(i=0;i<elemento.length;i++){
+        valor = elemento[i];
+        if(element.item == elemento[i].childNodes[1].textContent){
+            if(elemento[i].childNodes[3].textContent > 1){
+                let b = elemento[i].childNodes[3].textContent;
+                let valor = parseInt(b,10);
+                elemento[i].childNodes[3].innerHTML = valor - 1;
             }else{
-                carro.removeChild(a[i])
+                tagCarrinho.removeChild(elemento[i]);
             }
         }
     }
